@@ -1,0 +1,66 @@
+// variables
+$horizontal-padding: 24px;
+$input-height: 36px;
+$bg-color: #D2CAAB;
+$border-color: #364E27;
+$font-color: #364E27;
+$content-width: 400px;
+
+@import 'reset';
+@import 'homepage';
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    // https://leaverou.github.io/css3patterns/#yin-yang
+    background:
+    radial-gradient(circle at 50% 59%, #D2CAAB 3%, #364E27 4%, #364E27 11%, rgba(54,78,39,0) 12%, rgba(54,78,39,0)) 50px 0,
+    radial-gradient(circle at 50% 41%, #364E27 3%, #D2CAAB 4%, #D2CAAB 11%, rgba(210,202,171,0) 12%, rgba(210,202,171,0)) 50px 0,
+    radial-gradient(circle at 50% 59%, #D2CAAB 3%, #364E27 4%, #364E27 11%, rgba(54,78,39,0) 12%, rgba(54,78,39,0)) 0 50px,
+    radial-gradient(circle at 50% 41%, #364E27 3%, #D2CAAB 4%, #D2CAAB 11%, rgba(210,202,171,0) 12%, rgba(210,202,171,0)) 0 50px,
+    radial-gradient(circle at 100% 50%, #D2CAAB 16%, rgba(210,202,171,0) 17%),
+    radial-gradient(circle at 0% 50%, #364E27 16%, rgba(54,78,39,0) 17%),
+    radial-gradient(circle at 100% 50%, #D2CAAB 16%, rgba(210,202,171,0) 17%) 50px 50px,
+    radial-gradient(circle at 0% 50%, #364E27 16%, rgba(54,78,39,0) 17%) 50px 50px;
+    background-color:#63773F;
+    background-size:100px 100px;
+}
+
+h1, h2, p, li, a {
+    color: $font-color;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background: $bg-color;
+    border-bottom: 1px solid $border-color;
+    flex: 0 0 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 $horizontal-padding;
+
+    h1 {
+        font-size: 32px;
+        font-weight: 700;
+        margin: 0 auto;
+    }
+}
+
+.main {
+    flex: 1 0 auto;
+
+    &.four-oh-four {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: slategray;
+
+        .title {
+            font-size: 96px;
+        }
+    }
+}

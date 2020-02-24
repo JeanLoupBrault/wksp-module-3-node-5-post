@@ -1,0 +1,41 @@
+.input-container {
+    background: rgba(255, 255, 255, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+
+    label {
+        display: none;
+    }
+
+    input {
+        box-sizing: border-box;
+        height: $input-height;
+        padding: 0 6px;
+        width: calc(#{$content-width} - 60px);
+    }
+
+    button {
+        height: $input-height;
+        width: 60px;
+    }
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+}
+.todo-list {
+    background: $bg-color;
+    border: 1px solid $border-color;
+    width: 400px;
+    min-height: 600px;
+
+    &--item {
+        border-bottom: 1px solid $border-color;
+        padding: 10px 14px;
+    }
+}

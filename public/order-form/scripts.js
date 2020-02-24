@@ -1,4 +1,4 @@
-const serverUrl = '';
+//const serverUrl = 'http://localhost:8000/user-form';
 const orderItems = {
     undefined: { label: 'Pick an item', imgUrl: './assets/question.jpg' },
     bottle: { label: 'Bottle', imgUrl: './assets/bottle.png' },
@@ -14,7 +14,7 @@ const errorMessages = {
 const submitButton = document.getElementById('confirm-button');
 const order = document.getElementById('order');
 const errorMsg = document.getElementById('error');
-const size = document.getElementById('sizing');
+const size = document.getElementById('size');
 const givenName = document.getElementById('givenName');
 const surname = document.getElementById('surname');
 const email = document.getElementById('email');
@@ -35,12 +35,16 @@ const updateForm = () => {
 }
 
 const handleToggleErrorMessage = (errorStatus) => {
-
+    // if (user name || address === customer): error code 550 existing customer
+    // if (address outside Canada): error code 650 outside of delivery zone
+    // if (item not in stock): error code 450 item out of stock
+    // if (missing info): error 000 missing information
+    // if any of the above validation fails, return an error as response
 }
 
 const handleSubmit = (event) => {
     event.preventDefault();
-
+    console.log(size.value);
     submitButton.disabled = true;
 
     const data = {
@@ -56,7 +60,7 @@ const handleSubmit = (event) => {
         country: country.value
     };
 
-    fetch(`${serverUrl}/order`, {
+    fetch('/order', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
@@ -64,15 +68,15 @@ const handleSubmit = (event) => {
             "Content-Type": "application/json"
         }
     })
-    .then(res => res.json())
-    .then(data => {
-        const { status, error } = data;
-        if (status === 'success') {
-            window.location.href = '/order-confirmed';
-        } else if (data.error) {
-            submitButton.disabled = false;
-            errorMsg.style.display = 'flex';
-            errorMsg.innerText = error;
-        }
-    });
+        .then(res => res.json())
+        .then(data => {
+            const { status, error } = data;
+            if (status === 'success') {
+                window.location.href = '/order-confirmed';
+            } else if (error) {
+                submitButton.disabled = false;
+                errorMsg.style.display = 'flex';
+                errorMsg.innerText = errorMessages[error];
+            }
+        });
 }
