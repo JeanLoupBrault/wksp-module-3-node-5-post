@@ -1,4 +1,5 @@
 //const serverUrl = 'http://localhost:8000/user-form';
+const errorStatus = '';
 const orderItems = {
     undefined: { label: 'Pick an item', imgUrl: './assets/question.jpg' },
     bottle: { label: 'Bottle', imgUrl: './assets/bottle.png' },
@@ -24,6 +25,8 @@ const province = document.getElementById('province');
 const postcode = document.getElementById('postcode');
 const country = document.getElementById('country');
 
+
+
 const updateForm = () => {
     const sel = document.getElementById('order').value;
     if (sel === 'shirt') {
@@ -34,13 +37,6 @@ const updateForm = () => {
     document.getElementById('order-image').style.backgroundImage = `url(${orderItems[sel].imgUrl}`;
 }
 
-const handleToggleErrorMessage = (errorStatus) => {
-    // if (user name || address === customer): error code 550 existing customer
-    // if (address outside Canada): error code 650 outside of delivery zone
-    // if (item not in stock): error code 450 item out of stock
-    // if (missing info): error 000 missing information
-    // if any of the above validation fails, return an error as response
-}
 
 const handleSubmit = (event) => {
     event.preventDefault();
@@ -68,7 +64,11 @@ const handleSubmit = (event) => {
             "Content-Type": "application/json"
         }
     })
-        .then(res => res.json())
+        .then(res => {
+            console.log(res)
+            res.json()
+        })
+
         .then(data => {
             const { status, error } = data;
             if (status === 'success') {
@@ -79,4 +79,7 @@ const handleSubmit = (event) => {
                 errorMsg.innerText = errorMessages[error];
             }
         });
+}
+const handleToggleErrorMessage = (errorStatus) => {
+
 }

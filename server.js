@@ -3,8 +3,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const { getTodos, getData, handle404 } = require('./handlers');
+// exercise 1
+const { getTodos, getData } = require('./handlers');
+//exercise 2
 const { stock, customers } = require('./data/promo');
+//const { getOrderConf } = require('./public/order-form/scripts');
 
 const PORT = process.env.PORT || 4000;
 
@@ -18,16 +21,23 @@ const PORT = process.env.PORT || 4000;
 
 // exercise 2
 const getOrder = (req, res) => {
-    res.send('pages/order', {
+    res.render('pages/order', {
         stock: stock,
         customers: customers
-    })
+    }
+    )
+}
+
+const postOrder = (req, res) => {
+    console.log('Req body')
+    console.log(req.body)
+
 }
 
 const getOrderConf = (req, res) => {
     res.render('pages/order-confirmation', {
         stock: stock,
-        customers, customers
+        customers: customers
     })
 }
 
@@ -50,8 +60,10 @@ app.get('/data', getData)
 
 
 // exercise 2
-app.get('/order', getOrder)
+app.post('/order', postOrder)
+//app.get('/order', getOrder)
 app.get('/order-confirmation', getOrderConf)
+
 
 // app.use(handle404)
 

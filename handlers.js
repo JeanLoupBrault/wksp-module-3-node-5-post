@@ -2,14 +2,14 @@ const items = [];
 
 
 const getTodos = (req, res) => {
-    res.send('pages/todos', { items: items })
+    res.render('pages/todos', { items: items })
 }
 
 const getData = (req, res) => {
     const { item } = req.body;
     items.push(item);
 
-    res.render('/pages/data');
+    res.render('pages/data', { items: items });
 }
 
 const handle404 = (req, res) => {
